@@ -1,0 +1,11 @@
+name: BungeeLobby
+main: de.christoph.wiese.BungeeLobby.BungeeLobby
+version: 1.0
+author: Tonix1508
+commands:
+  lobby:
+    description: Return to the Lobby.
+permissions:
+  bungeelobby.command:
+    description: Allows access to the Lobby Command.
+    default: true
