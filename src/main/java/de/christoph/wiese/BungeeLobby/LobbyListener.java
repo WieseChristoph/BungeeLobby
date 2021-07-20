@@ -9,12 +9,20 @@ import net.md_5.bungee.event.EventHandler;
 
 public class LobbyListener implements Listener {
 
+    final BungeeLobby main;
+
+    public LobbyListener (BungeeLobby config) {
+        this.main = config;
+    }
+
     @EventHandler
     public void onServerConnected(ServerConnectedEvent event) {
-        if(!event.getServer().getInfo().getName().equals("lobby")) {
+        // check if player is joining lobby or other server. If its another server the message is shown.
+        if(!event.getServer().getInfo().getName().equals(main.config.getString("lobbyServerName"))) {
             event.getPlayer().sendMessage(
                 ChatMessageType.ACTION_BAR,
-                new ComponentBuilder("/lobby to return to the lobby").color(ChatColor.GOLD).create()
+                new ComponentBuilder("/" + main.config.getString("lobbyCmdName") + " to return to the lobby!")
+                        .color(ChatColor.GOLD).create()
             );
         }
     }
